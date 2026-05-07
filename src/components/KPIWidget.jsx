@@ -37,6 +37,8 @@ const KPIWidget = ({ title, value, label, trend, trendValue, icon: Icon, color, 
     // Color configurations
     const colorMap = {
         'text-cyan-500': { from: 'rgba(6,182,212,0.1)', to: 'rgba(6,182,212,0.05)', glow: 'rgba(6,182,212,0.3)', gradient: 'from-cyan-400 to-cyan-500' },
+        'text-teal-700': { from: 'rgba(15,118,110,0.12)', to: 'rgba(20,184,166,0.06)', glow: 'rgba(13,148,136,0.3)', gradient: 'from-teal-500 to-emerald-500' },
+        'text-cyan-700': { from: 'rgba(14,165,233,0.12)', to: 'rgba(6,182,212,0.06)', glow: 'rgba(8,145,178,0.3)', gradient: 'from-cyan-500 to-teal-500' },
         'text-blue-500': { from: 'rgba(59,130,246,0.1)', to: 'rgba(59,130,246,0.05)', glow: 'rgba(59,130,246,0.3)', gradient: 'from-blue-400 to-blue-500' },
         'text-green-500': { from: 'rgba(34,197,94,0.1)', to: 'rgba(34,197,94,0.05)', glow: 'rgba(34,197,94,0.3)', gradient: 'from-green-400 to-green-500' },
         'text-red-500': { from: 'rgba(239,68,68,0.1)', to: 'rgba(239,68,68,0.05)', glow: 'rgba(239,68,68,0.3)', gradient: 'from-red-400 to-red-500' },
@@ -56,12 +58,9 @@ const KPIWidget = ({ title, value, label, trend, trendValue, icon: Icon, color, 
                 y: -6,
                 transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
             }}
-            className="relative overflow-hidden cursor-pointer group rounded-2xl"
+            className="relative overflow-hidden cursor-pointer group rounded-2xl aqua-panel aqua-panel-hover"
             style={{
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(240,249,255,0.95) 100%)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(148,163,184,0.25)',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.88) 0%, rgba(240,253,250,0.94) 100%)',
             }}
         >
             {/* Premium glow on hover */}

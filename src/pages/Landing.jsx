@@ -11,9 +11,9 @@ import RippleButton from '../components/RippleButton';
 // Premium floating particle system
 const FloatingParticle = ({ delay = 0, size = 4, color = 'cyan' }) => {
     const colors = {
-        cyan: { bg: 'rgba(6, 182, 212, 0.4)', glow: 'rgba(6, 182, 212, 0.2)' },
-        purple: { bg: 'rgba(168, 85, 247, 0.35)', glow: 'rgba(168, 85, 247, 0.15)' },
-        blue: { bg: 'rgba(59, 130, 246, 0.35)', glow: 'rgba(59, 130, 246, 0.15)' },
+        cyan: { bg: 'rgba(56, 189, 248, 0.4)', glow: 'rgba(56, 189, 248, 0.2)' },
+        green: { bg: 'rgba(16, 185, 129, 0.36)', glow: 'rgba(16, 185, 129, 0.18)' },
+        blue: { bg: 'rgba(186, 230, 253, 0.4)', glow: 'rgba(186, 230, 253, 0.2)' },
     };
     const c = colors[color] || colors.cyan;
 
@@ -98,7 +98,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, isDark = false
         className={`relative p-8 rounded-3xl overflow-hidden group cursor-pointer transition-all duration-500 ${
             isDark
                 ? 'bg-slate-900/70 backdrop-blur-xl border border-slate-700/40 shadow-xl'
-                : 'bg-white/70 backdrop-blur-xl border border-white/50 shadow-lg'
+                : 'aqua-panel aqua-panel-hover'
         }`}
         style={{
             backdropFilter: 'blur(20px)',
@@ -106,11 +106,11 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, isDark = false
     >
         {/* Animated gradient border on hover */}
         <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/20 via-transparent to-purple-400/20" />
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/20 via-transparent to-emerald-400/20" />
             <div
                 className="absolute -inset-px rounded-3xl"
                 style={{
-                    background: 'linear-gradient(135deg, rgba(6,182,212,0.3), transparent, rgba(168,85,247,0.3))',
+                    background: 'linear-gradient(135deg, rgba(6,182,212,0.3), transparent, rgba(16,185,129,0.3))',
                     mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                     maskComposite: 'exclude',
                     padding: '1px',
@@ -120,7 +120,7 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, isDark = false
 
         {/* Glow effect */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-            <div className="absolute -inset-full h-full w-full bg-gradient-to-r from-cyan-500/10 via-purple-500/10 to-cyan-500/10 -skew-x-12 animate-[shimmer_4s_ease-in-out_infinite]" />
+            <div className="absolute -inset-full h-full w-full bg-gradient-to-r from-cyan-500/10 via-emerald-500/10 to-cyan-500/10 -skew-x-12 animate-[shimmer_4s_ease-in-out_infinite]" />
         </div>
 
         {/* Icon */}
@@ -130,13 +130,13 @@ const FeatureCard = ({ icon: Icon, title, description, delay = 0, isDark = false
             className={`relative w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${
                 isDark
                     ? 'bg-gradient-to-br from-cyan-500/20 to-cyan-400/10 border border-cyan-400/30'
-                    : 'bg-gradient-to-br from-ocean-50 to-cyan-50 border border-cyan-100/60'
+                    : 'bg-gradient-to-br from-emerald-50 to-cyan-50 border border-emerald-100/80'
             }`}
             style={{
                 boxShadow: '0 4px 20px rgba(6, 182, 212, 0.15)',
             }}
         >
-            <Icon size={28} className={isDark ? 'text-cyan-400' : 'text-ocean-600'} strokeWidth={1.5} />
+            <Icon size={28} className={isDark ? 'text-cyan-400' : 'text-teal-700'} strokeWidth={1.5} />
         </motion.div>
 
         {/* Content */}
@@ -191,11 +191,9 @@ const TestimonialCard = ({ name, role, company, quote, delay = 0 }) => (
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay, duration: 0.6 }}
         viewport={{ once: true }}
-        className="p-6 rounded-2xl border border-white/10"
+        className="p-6 rounded-2xl aqua-panel aqua-panel-hover"
         style={{
-            background: 'rgba(15,23,42,0.8)',
-            backdropFilter: 'blur(20px)',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
+            backdropFilter: 'blur(20px)'
         }}
     >
         <div className="flex gap-1 mb-3">
@@ -203,16 +201,16 @@ const TestimonialCard = ({ name, role, company, quote, delay = 0 }) => (
                 <Star key={i} size={14} className="text-yellow-400 fill-yellow-400" />
             ))}
         </div>
-        <p className="text-slate-300 text-sm mb-4 leading-relaxed">"{quote}"</p>
+        <p className="text-slate-600 text-sm mb-4 leading-relaxed">"{quote}"</p>
         <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm" style={{
-                background: 'linear-gradient(135deg, #0891b2 0%, #06b6d4 50%, #22d3ee 100%)',
+                background: 'linear-gradient(135deg, #0f766e 0%, #0891b2 50%, #10b981 100%)',
             }}>
                 {name.charAt(0)}
             </div>
             <div>
-                <p className="font-semibold text-white text-sm">{name}</p>
-                <p className="text-xs text-slate-400">{role} at {company}</p>
+                <p className="font-semibold text-slate-800 text-sm">{name}</p>
+                <p className="text-xs text-slate-500">{role} at {company}</p>
             </div>
         </div>
     </motion.div>
@@ -228,18 +226,13 @@ const Landing = () => {
     useEffect(() => { setMounted(true); }, []);
 
     return (
-        <div className="min-h-screen text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden" style={{ background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%)' }}>
+        <div className="min-h-screen text-slate-800 font-sans selection:bg-emerald-500/25 overflow-x-hidden aqua-natural-bg">
             {/* Animated gradient background */}
             <div className="fixed inset-0 -z-10">
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%)' }} />
+                <div className="absolute inset-0 aqua-natural-bg" />
 
                 {/* Animated gradient overlay */}
-                <div className="absolute inset-0" style={{
-                    background: 'linear-gradient(-45deg, #0f172a, #1e3a8a, #0c4a6e, #06b6d4, #0f172a)',
-                    backgroundSize: '400% 400%',
-                    animation: 'gradient-shift 12s ease infinite',
-                    opacity: 0.4,
-                }} />
+                <div className="absolute inset-0 aqua-field-bg opacity-90" />
 
                 {/* Floating particles */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -248,14 +241,14 @@ const Landing = () => {
                             key={i}
                             delay={i * 0.4}
                             size={2 + (i % 5)}
-                            color={['cyan', 'purple', 'blue'][i % 3]}
+                            color={['cyan', 'green', 'blue'][i % 3]}
                         />
                     ))}
                 </div>
 
                 {/* Grid overlay */}
-                <div className="absolute inset-0 opacity-[0.03]" style={{
-                    backgroundImage: 'linear-gradient(rgba(6, 182, 212, 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 1px, transparent 1px))',
+                <div className="absolute inset-0 opacity-[0.05]" style={{
+                    backgroundImage: 'linear-gradient(rgba(14, 165, 233, 1px) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 1px) 1px, transparent 1px)',
                     backgroundSize: '40px 40px',
                 }} />
             </div>
@@ -263,141 +256,186 @@ const Landing = () => {
             <Navbar />
 
             {/* HERO SECTION */}
-            <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6">
-                {/* Parallax hero content */}
+            <section ref={containerRef} className="relative min-h-[94vh] pt-24 overflow-hidden water-network-scene">
+                <div className="water-surface-ribbon hidden lg:block left-[6%] top-[24%] h-14 w-72 -rotate-6 opacity-70" />
+                <div className="water-surface-ribbon hidden lg:block right-[8%] top-[18%] h-16 w-96 rotate-3 opacity-80" />
+                <div className="water-surface-ribbon hidden lg:block right-[18%] bottom-[22%] h-12 w-80 -rotate-12 opacity-70" />
+                <div className="water-line hidden md:block left-[44%] top-[28%] w-[420px] rotate-[18deg]" />
+                <div className="water-line hidden md:block left-[52%] top-[54%] w-[360px] -rotate-[16deg]" />
+                <div className="water-line hidden md:block left-[60%] top-[38%] w-[310px] rotate-[84deg]" />
+                <div className="water-node hidden md:block left-[50%] top-[30%]" />
+                <div className="water-node hidden md:block left-[76%] top-[41%]" />
+                <div className="water-node hidden md:block left-[63%] top-[67%]" />
+
                 <motion.div
                     style={{ y, opacity }}
-                    className="text-center max-w-5xl mx-auto mb-12 relative z-10"
+                    className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 min-h-[calc(92vh-6rem)] flex items-center"
                 >
-                    {/* Premium Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                        className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-cyan-400/30 bg-cyan-500/10 backdrop-blur-xl mb-10 shadow-lg shadow-cyan-500/10"
-                    >
-                        <motion.span
-                            className="flex h-2.5 w-2.5 relative"
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
-                        >
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-gradient-to-r from-cyan-400 to-cyan-300" />
-                        </motion.span>
-                        <span className="text-xs font-bold text-cyan-300 tracking-widest uppercase">AquaGrid AI 2.0 — Now Live</span>
-                    </motion.div>
+                    <div className="w-full grid lg:grid-cols-[minmax(0,1.04fr)_minmax(380px,0.96fr)] gap-10 lg:gap-16 items-center pb-24">
+                        <div className="max-w-3xl">
+                            <motion.div
+                                initial={{ opacity: 0, x: -24 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                className="inline-flex items-center gap-3 px-4 py-2 rounded-full aqua-chip backdrop-blur-xl mb-7 shadow-sm"
+                            >
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-70" />
+                                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                                </span>
+                                <span className="text-xs font-bold tracking-widest uppercase">Sustainable water operations</span>
+                            </motion.div>
 
-                    {/* Main heading with wave animation */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-5xl md:text-7xl lg:text-[84px] tracking-tighter font-bold leading-[1.02] mb-10"
-                    >
-                        <span className="text-white">Water management,</span>
-                        <br />
-                        <WaveText delay={0.5} className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300">
-                            perfectly engineered.
-                        </WaveText>
-                    </motion.h1>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 26 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                className="text-5xl md:text-7xl lg:text-[92px] font-bold leading-[0.94] tracking-tight text-slate-950"
+                            >
+                                See every drop.
+                                <span className="block text-gradient">Act before waste.</span>
+                            </motion.h1>
 
-                    {/* Subtitle */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 25 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="text-lg md:text-xl text-slate-300 mb-14 max-w-2xl mx-auto font-light leading-relaxed"
-                    >
-                        The enterprise-grade platform for residential complexes to track usage, predict leaks, and automate billing with zero friction.
-                    </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 22 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.65, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                                className="mt-8 text-lg md:text-xl text-slate-600 max-w-2xl leading-relaxed"
+                            >
+                                AquaGrid AI blends tank monitoring, leak alerts, resident usage, and billing into one calm interface shaped for real communities and real conservation.
+                            </motion.p>
 
-                    {/* CTA buttons with premium styling */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 25 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        className="flex flex-col sm:flex-row gap-5 justify-center items-center"
-                    >
-                        <RippleButton
-                            variant="primary"
-                            size="xl"
-                            icon={ArrowRight}
-                            onClick={() => {}}
-                            className="shadow-2xl shadow-cyan-500/25 hover:shadow-cyan-500/40"
-                        >
-                            Start Free Trial
-                        </RippleButton>
-                        <Link
-                            to="/login"
-                            className="group relative h-14 px-10 rounded-2xl font-semibold flex items-center justify-center gap-3 transition-all duration-500 overflow-hidden"
-                        >
-                            {/* Gradient background */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            {/* Border */}
-                            <div className="absolute inset-0 rounded-2xl border border-white/20 group-hover:border-white/40 transition-colors duration-500" />
-                            {/* Glow on hover */}
-                            <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 blur-xl" />
-                            <span className="relative z-10 text-white flex items-center gap-2">
-                                <Play size={16} className="group-hover:scale-110 transition-transform" />
-                                View Live Demo
-                            </span>
-                        </Link>
-                    </motion.div>
-                </motion.div>
+                            <motion.div
+                                initial={{ opacity: 0, y: 18 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                                className="mt-6 flex flex-wrap gap-3"
+                            >
+                                {['Tank clarity', 'Leak prediction', 'Fair billing'].map((item) => (
+                                    <span key={item} className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/[0.62] px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-xl">
+                                        <CheckCircle2 size={15} className="text-emerald-600" />
+                                        {item}
+                                    </span>
+                                ))}
+                            </motion.div>
 
-                {/* Hero visual - Animated tank with premium effects */}
-                <motion.div
-                    initial={{ opacity: 0, y: 80, scale: 0.85 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative z-10 mt-8"
-                >
-                    <div className="relative">
-                        {/* Ambient glow */}
-                        <div className="absolute inset-0 blur-[100px] bg-cyan-500/15 rounded-full scale-125" />
+                            <motion.div
+                                initial={{ opacity: 0, y: 22 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.65, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                                className="mt-10 flex flex-col sm:flex-row gap-4"
+                            >
+                                <Link
+                                    to="/login"
+                                    className="aqua-cta h-14 px-8 rounded-2xl font-semibold flex items-center justify-center gap-3 text-lg"
+                                >
+                                    Login <ArrowRight size={20} />
+                                </Link>
+                                <Link
+                                    to="/features"
+                                    className="h-14 px-8 rounded-2xl font-semibold flex items-center justify-center gap-3 text-slate-800 bg-white/70 border border-teal-100 hover:border-teal-300 transition-all shadow-sm"
+                                >
+                                    <Play size={17} />
+                                    Get Started
+                                </Link>
+                            </motion.div>
+                        </div>
 
-                        {/* Tank wrapper with glass effect */}
                         <motion.div
-                            whileHover={{ scale: 1.02 }}
-                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative rounded-[3.5rem] border border-cyan-400/20 bg-slate-900/70 backdrop-blur-2xl p-14 shadow-[0_0_80px_rgba(6,182,212,0.2)]"
-                            style={{
-                                boxShadow: '0 0 60px rgba(6, 182, 212, 0.15), 0 0 120px rgba(6, 182, 212, 0.1)',
-                            }}
+                            initial={{ opacity: 0, x: 42, scale: 0.96 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                            className="relative min-h-[430px] hidden md:block"
                         >
-                            <AnimatedTank overrideLevel={68} status="Normal" size="lg" />
+                            <div className="absolute right-0 top-8 w-[430px] h-[360px] hero-visual-shell rotate-2" />
+                            <div className="absolute right-10 top-10 flex items-center gap-2 rounded-full border border-white/80 bg-white/70 px-4 py-2 text-xs font-bold uppercase tracking-widest text-teal-700 backdrop-blur-xl">
+                                <CloudRain size={15} />
+                                Water network
+                            </div>
+                            <div className="absolute right-16 top-24 w-72 rounded-3xl border border-white/75 bg-white/60 p-6 shadow-xl backdrop-blur-xl">
+                                <div className="flex items-center justify-between">
+                                    <p className="text-xs font-bold tracking-widest text-cyan-700 uppercase">Community flow</p>
+                                    <Activity size={20} className="text-emerald-600" />
+                                </div>
+                                <div className="mt-6 space-y-4">
+                                    {[
+                                        ['Block A', '82% stable'],
+                                        ['Block B', '76% stable'],
+                                        ['Garden line', '94% efficient'],
+                                    ].map(([label, value], idx) => (
+                                        <div key={label}>
+                                            <div className="flex items-center justify-between text-sm">
+                                                <span className="font-semibold text-slate-700">{label}</span>
+                                                <span className="text-slate-500">{value}</span>
+                                            </div>
+                                            <div className="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    animate={{ width: `${82 + idx * 5}%` }}
+                                                    transition={{ duration: 1, delay: 0.8 + idx * 0.1 }}
+                                                    className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-400"
+                                                />
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="absolute left-4 top-[8.5rem] w-56 natural-metric-card p-5">
+                                <p className="text-xs font-bold tracking-widest text-teal-700 uppercase">Leak risk</p>
+                                <div className="mt-4 h-2 rounded-full bg-slate-100 overflow-hidden">
+                                    <motion.div
+                                        initial={{ width: 0 }}
+                                        animate={{ width: '18%' }}
+                                        transition={{ duration: 1, delay: 0.9 }}
+                                        className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500"
+                                    />
+                                </div>
+                                <p className="mt-3 text-3xl font-bold text-slate-900">Low</p>
+                                <p className="text-sm text-slate-500">All zones within normal pressure.</p>
+                            </div>
+                            <div className="absolute right-1 bottom-12 w-64 natural-metric-card p-5">
+                                <div className="flex items-center justify-between">
+                                    <p className="text-sm font-semibold text-slate-700">Today saved</p>
+                                    <Droplets size={18} className="text-teal-600" />
+                                </div>
+                                <p className="mt-3 text-4xl font-bold text-slate-950">1,280L</p>
+                                <p className="text-sm text-slate-500">Compared with expected use.</p>
+                            </div>
+                            <div className="absolute left-24 bottom-2 w-56 natural-metric-card p-4">
+                                <div className="flex items-center justify-between gap-3">
+                                    <div>
+                                        <p className="text-xs font-bold tracking-widest text-cyan-700 uppercase">Flow health</p>
+                                        <p className="mt-1 text-2xl font-bold text-slate-950">96%</p>
+                                    </div>
+                                    <Activity size={26} className="text-emerald-600" />
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </motion.div>
 
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.5 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                >
-                    <motion.div
-                        animate={{ y: [0, 12, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="flex flex-col items-center gap-3 text-cyan-400/50"
-                    >
-                        <span className="text-[10px] font-semibold tracking-[0.3em] uppercase">Scroll</span>
-                        <motion.div
-                            animate={{ rotate: [0, 45, 90, 135, 180, 225, 270, 315, 360], opacity: [1, 0.5, 1] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                        >
-                            <ChevronDown size={20} />
-                        </motion.div>
-                    </motion.div>
-                </motion.div>
+                <div className="absolute inset-x-0 bottom-0 z-20 hero-data-strip">
+                    <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {[
+                            ['98%', 'AI detection accuracy'],
+                            ['24/7', 'Tank and meter watch'],
+                            ['7 sec', 'Alert response window'],
+                            ['32%', 'Typical water savings'],
+                        ].map(([value, label]) => (
+                            <div key={label} className="text-left">
+                                <p className="text-2xl md:text-3xl font-bold text-slate-950">{value}</p>
+                                <p className="text-xs md:text-sm font-medium text-slate-500">{label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </section>
 
             {/* Wave divider */}
-            <WaveDivider variant="dark" className="-mt-1" />
+            <WaveDivider variant="ocean" className="-mt-1" />
 
             {/* STATS SECTION */}
-            <section className="py-24 relative z-10" style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.9) 0%, rgba(2,6,23,0.95) 100%)' }}>
+            <section className="py-24 relative z-10" style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.74) 0%, rgba(240,253,250,0.88) 100%)' }}>
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {[
@@ -410,11 +448,10 @@ const Landing = () => {
                                 <motion.div
                                     whileHover={{ scale: 1.05, y: -5 }}
                                     transition={{ duration: 0.3 }}
-                                    className="text-center p-6 rounded-2xl border border-slate-700/50"
+                                    className="text-center p-6 rounded-2xl max-w-sm mx-auto aqua-panel aqua-panel-hover"
                                     style={{
-                                        background: 'rgba(15,23,42,0.8)',
+                                        background: 'rgba(255,255,255,0.8)',
                                         backdropFilter: 'blur(20px)',
-                                        boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
                                     }}
                                 >
                                     <motion.div
@@ -423,16 +460,16 @@ const Landing = () => {
                                         transition={{ delay: idx * 0.1 + 0.2, type: 'spring', stiffness: 200 }}
                                         className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4"
                                         style={{
-                                            background: 'linear-gradient(135deg, rgba(6,182,212,0.15) 0%, rgba(6,182,212,0.05) 100%)',
-                                            border: '1px solid rgba(6,182,212,0.2)',
+                                            background: 'linear-gradient(135deg, rgba(14,165,233,0.15) 0%, rgba(14,165,233,0.05) 100%)',
+                                            border: '1px solid rgba(14,165,233,0.2)',
                                         }}
                                     >
-                                        <stat.icon className="text-cyan-400" size={26} />
+                                        <stat.icon className="text-teal-700" size={26} />
                                     </motion.div>
-                                    <div className="text-4xl font-bold text-white mb-2 font-display tracking-tight">
+                                    <div className="text-4xl font-bold text-slate-900 mb-2 font-display tracking-tight">
                                         <AnimatedCounter value={stat.value} />
                                     </div>
-                                    <div className="text-sm text-slate-400 font-medium">{stat.label}</div>
+                                    <div className="text-sm text-slate-500 font-medium">{stat.label}</div>
                                 </motion.div>
                             </FadeIn>
                         ))}
@@ -444,22 +481,22 @@ const Landing = () => {
             <WaveDivider variant="light" />
 
             {/* FLOW SECTION */}
-            <section className="py-32 relative z-10 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.9) 100%)' }}>
+            <section className="py-32 relative z-10 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(248,250,252,0.9) 0%, rgba(241,245,249,0.9) 100%)' }}>
                 {/* Background decoration */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full pointer-events-none" style={{
-                    background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(14,165,233,0.05) 0%, transparent 70%)',
                 }} />
 
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="mb-24 md:w-2/3">
                         <FadeIn>
-                            <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-white">
-                                Seamless data pipelines.
+                            <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-slate-900">
+                                Water flow, clearly connected.
                             </h2>
                         </FadeIn>
                         <FadeIn delay={0.1}>
-                            <p className="text-slate-400 text-xl leading-relaxed font-light">
-                                From physical sensors to analytical dashboards, AquaGrid handles the entire lifecycle of water management data with sub-second latency.
+                            <p className="text-slate-600 text-xl leading-relaxed font-light">
+                                From tank sensors to resident dashboards, AquaGrid turns live water movement into clear decisions for operations, billing, and maintenance.
                             </p>
                         </FadeIn>
                     </div>
@@ -489,25 +526,20 @@ const Landing = () => {
                                         </div>
                                     )}
 
-                                    <div className="relative p-8 rounded-2xl border transition-all duration-500" style={{
-                                        background: 'rgba(15,23,42,0.8)',
-                                        backdropFilter: 'blur(20px)',
-                                        borderColor: 'rgba(51,65,85,0.5)',
-                                        boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
-                                    }}>
+                                    <div className="relative p-8 rounded-2xl aqua-panel aqua-panel-hover">
                                         <motion.div
                                             whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
                                             transition={{ duration: 0.5 }}
                                             className="w-18 h-18 rounded-2xl flex items-center justify-center mb-6 mx-auto"
                                             style={{
-                                                background: 'linear-gradient(135deg, rgba(6,182,212,0.15) 0%, rgba(6,182,212,0.05) 100%)',
-                                                border: '1px solid rgba(6,182,212,0.2)',
+                                                background: 'linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(14,165,233,0.02) 100%)',
+                                                border: '1px solid rgba(14,165,233,0.2)',
                                             }}
                                         >
-                                            <step.icon className="text-cyan-400" size={28} strokeWidth={1.5} />
+                                            <step.icon className="text-teal-700" size={28} strokeWidth={1.5} />
                                         </motion.div>
-                                        <h4 className="text-lg font-bold text-white mb-2 text-center">{step.title}</h4>
-                                        <p className="text-slate-400 text-sm leading-relaxed text-center">{step.desc}</p>
+                                        <h4 className="text-lg font-bold text-slate-800 mb-2 text-center">{step.title}</h4>
+                                        <p className="text-slate-500 text-sm leading-relaxed text-center">{step.desc}</p>
                                     </div>
                                 </motion.div>
                             </FadeIn>
@@ -520,19 +552,19 @@ const Landing = () => {
             <WaveDivider variant="ocean" />
 
             {/* FEATURES GRID */}
-            <section className="py-32 relative z-10 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.9) 0%, rgba(2,6,23,0.95) 100%)' }}>
+            <section className="py-32 relative z-10 overflow-hidden" style={{ background: 'linear-gradient(180deg, rgba(241,245,249,0.9) 0%, rgba(255,255,255,0.95) 100%)' }}>
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-28">
                         {/* Text side */}
                         <div>
                             <FadeIn>
-                                <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-white">
-                                    Real-time Digital Twins.
+                                <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-slate-900">
+                                    Real-time tank awareness.
                                 </h2>
                             </FadeIn>
                             <FadeIn delay={0.1}>
-                                <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
-                                    Monitor your reservoirs with precision. Our SVG-based AnimatedTank component reflects fluid dynamics and alerts you instantly if thresholds fail.
+                                <p className="text-slate-600 text-lg mb-10 leading-relaxed font-light">
+                                    Monitor every reservoir with a natural, readable interface that highlights levels, pressure, leaks, and abnormal consumption before they become costly.
                                 </p>
                             </FadeIn>
                             <FadeIn delay={0.2}>
@@ -544,13 +576,13 @@ const Landing = () => {
                                             whileInView={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.1 + 0.3 }}
                                             viewport={{ once: true }}
-                                            className="flex items-center gap-4 text-slate-300 font-medium text-base"
+                                            className="flex items-center gap-4 text-slate-700 font-medium text-base"
                                         >
                                             <div className="w-8 h-8 rounded-xl flex items-center justify-center shadow-sm" style={{
-                                                background: 'linear-gradient(135deg, rgba(6,182,212,0.15) 0%, rgba(6,182,212,0.05) 100%)',
-                                                border: '1px solid rgba(6,182,212,0.2)',
+                                                background: 'linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(14,165,233,0.02) 100%)',
+                                                border: '1px solid rgba(14,165,233,0.2)',
                                             }}>
-                                                <CheckCircle2 className="text-cyan-400" size={16} />
+                                                <CheckCircle2 className="text-cyan-600" size={16} />
                                             </div>
                                             {item}
                                         </motion.li>
@@ -569,21 +601,21 @@ const Landing = () => {
                                 <div className="relative">
                                     {/* Ambient glow */}
                                     <div className="absolute inset-0 rounded-full" style={{
-                                        background: 'radial-gradient(circle, rgba(6,182,212,0.15) 0%, transparent 70%)',
+                                        background: 'radial-gradient(circle, rgba(14,165,233,0.15) 0%, transparent 70%)',
                                         filter: 'blur(60px)',
                                     }} />
 
                                     <motion.div
-                                        whileHover={{ boxShadow: '0 0 100px rgba(6, 182, 212, 0.3)' }}
+                                        whileHover={{ boxShadow: '0 0 100px rgba(14, 165, 233, 0.2)' }}
                                         transition={{ duration: 0.4 }}
-                                        className="relative rounded-[3rem] border border-slate-700/50 p-12"
+                                        className="relative rounded-[3rem] border border-slate-200/50 p-12 shadow-2xl"
                                         style={{
-                                            background: 'rgba(15,23,42,0.9)',
+                                            background: 'rgba(255,255,255,0.8)',
                                             backdropFilter: 'blur(20px)',
-                                            boxShadow: '0 0 60px rgba(6,182,212,0.15)',
+                                            boxShadow: '0 0 60px rgba(14,165,233,0.1)',
                                         }}
                                     >
-                                        <AnimatedTank overrideLevel={72} status="Normal" size="lg" />
+                                        <AnimatedTank overrideLevel={72} status="Normal" size="lg" isDark={false} />
                                     </motion.div>
                                 </div>
                             </motion.div>
@@ -598,7 +630,7 @@ const Landing = () => {
                             description="Compute intensive processing of historical consumption data to output actionable saving plans."
                             delay={0}
                             index={0}
-                            isDark={true}
+                            isDark={false}
                         />
                         <FeatureCard
                             icon={Bell}
@@ -606,7 +638,7 @@ const Landing = () => {
                             description="Configurable webhooks and SMS routes trigger immediately upon pipeline integrity faults."
                             delay={1}
                             index={1}
-                            isDark={true}
+                            isDark={false}
                         />
                         <FeatureCard
                             icon={BarChart3}
@@ -614,20 +646,20 @@ const Landing = () => {
                             description="Programmatic bill generation based on per-liter configurations set per apartment zone."
                             delay={2}
                             index={2}
-                            isDark={true}
+                            isDark={false}
                         />
                     </div>
                 </div>
             </section>
 
             {/* TESTIMONIALS SECTION */}
-            <section className="py-32 relative z-10" style={{ background: 'linear-gradient(180deg, rgba(2,6,23,0.95) 0%, rgba(15,23,42,0.9) 100%)' }}>
+            <section className="py-32 relative z-10" style={{ background: 'linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(241,245,249,0.9) 100%)' }}>
                 <div className="max-w-7xl mx-auto px-6">
                     <FadeIn className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-white">
+                        <h2 className="text-4xl md:text-5xl tracking-tight font-bold mb-6 text-slate-900">
                             Loved by teams worldwide
                         </h2>
-                        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                        <p className="text-slate-600 text-lg max-w-2xl mx-auto">
                             See what water management professionals say about AquaGrid AI
                         </p>
                     </FadeIn>
@@ -659,13 +691,13 @@ const Landing = () => {
             </section>
 
             {/* Wave divider */}
-            <WaveDivider variant="gradient" />
+            <WaveDivider variant="ocean" />
 
             {/* CTA SECTION */}
-            <section className="py-40 relative text-center overflow-hidden z-10" style={{ background: 'linear-gradient(180deg, rgba(15,23,42,0.95) 0%, rgba(2,6,23,0.98) 100%)' }}>
+            <section className="py-40 relative text-center overflow-hidden z-10" style={{ background: 'linear-gradient(180deg, rgba(241,245,249,0.95) 0%, rgba(224,242,254,0.98) 100%)' }}>
                 {/* Background glow */}
                 <div className="absolute inset-0 pointer-events-none" style={{
-                    background: 'radial-gradient(ellipse at 50% 50%, rgba(6,182,212,0.08) 0%, transparent 60%)',
+                    background: 'radial-gradient(ellipse at 50% 50%, rgba(14,165,233,0.08) 0%, transparent 60%)',
                 }} />
 
                 {/* Animated rings */}
@@ -674,14 +706,14 @@ const Landing = () => {
                         <motion.div
                             key={i}
                             initial={{ scale: 0.5, opacity: 0 }}
-                            animate={{ scale: [1 + i * 0.5, 2 + i * 0.5], opacity: [0.08, 0] }}
+                            animate={{ scale: [1 + i * 0.5, 2 + i * 0.5], opacity: [0.3, 0] }}
                             transition={{
                                 duration: 4,
                                 repeat: Infinity,
                                 delay: i * 1.5,
                                 ease: 'easeOut',
                             }}
-                            className="absolute rounded-full border border-cyan-400/20"
+                            className="absolute rounded-full border border-blue-400/20"
                             style={{ width: 300 + i * 200, height: 300 + i * 200 }}
                         />
                     ))}
@@ -689,12 +721,12 @@ const Landing = () => {
 
                 <div className="max-w-3xl mx-auto px-6 relative z-10">
                     <FadeIn>
-                        <h2 className="text-5xl md:text-6xl tracking-tight font-bold mb-8 text-white">
+                        <h2 className="text-5xl md:text-6xl tracking-tight font-bold mb-8 text-slate-900">
                             Ready to modernize?
                         </h2>
                     </FadeIn>
                     <FadeIn delay={0.1}>
-                        <p className="text-xl text-slate-400 mb-14 font-light max-w-xl mx-auto">
+                        <p className="text-xl text-slate-600 mb-14 font-light max-w-xl mx-auto">
                             Integrate AquaGrid AI today and dramatically optimize your water sustainability metrics.
                         </p>
                     </FadeIn>
@@ -704,7 +736,7 @@ const Landing = () => {
                             size="xl"
                             icon={ArrowRight}
                             onClick={() => {}}
-                            className="shadow-2xl shadow-cyan-500/30 hover:shadow-cyan-500/50"
+                            className="shadow-2xl shadow-blue-500/20 hover:shadow-blue-500/40"
                         >
                             Create an Account
                         </RippleButton>
@@ -712,9 +744,9 @@ const Landing = () => {
                 </div>
             </section>
 
-            <WaveDivider variant="dark" />
+            <WaveDivider variant="light" />
 
-            <Footer isDark />
+            <Footer isDark={false} />
         </div>
     );
 };

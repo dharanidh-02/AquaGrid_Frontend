@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, Droplets, LogOut, Play, Square, Moon, Sun } from 'lucide-react';
+import { Menu, X, Droplets, LogOut, Play } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '../lib/utils';
 import { useDemo } from '../context/DemoContext';
@@ -19,12 +19,7 @@ const Navbar = ({ user }) => {
         <motion.nav
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="fixed w-full z-50 border-b"
-            style={{
-                background: 'rgba(2,6,23,0.95)',
-                backdropFilter: 'blur(20px)',
-                borderColor: 'rgba(51,65,85,0.5)',
-            }}
+            className="fixed w-full z-50 border-b aqua-nav"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
@@ -34,11 +29,11 @@ const Navbar = ({ user }) => {
                             whileHover={{ rotate: 10, scale: 1.1 }}
                             className="relative"
                         >
-                            <Droplets className="h-8 w-8 text-cyan-400 drop-shadow-lg" />
+                            <Droplets className="h-8 w-8 text-teal-600 drop-shadow-lg" />
                             {/* Glow effect */}
-                            <div className="absolute inset-0 blur-md bg-cyan-400/30 rounded-full group-hover:bg-cyan-400/50 transition-colors" />
+                            <div className="absolute inset-0 blur-md bg-emerald-300/35 rounded-full group-hover:bg-cyan-300/45 transition-colors" />
                         </motion.div>
-                        <span className="text-2xl font-display font-bold text-white">AquaGrid AI</span>
+                        <span className="text-2xl font-display font-bold text-slate-900">AquaGrid AI</span>
                     </Link>
 
                     <div className="hidden md:block">
@@ -47,10 +42,10 @@ const Navbar = ({ user }) => {
                                 <>
                                     <Link
                                         to="/login"
-                                        className="text-slate-300 hover:text-cyan-400 font-medium transition-colors relative group"
+                                        className="text-slate-700 hover:text-teal-700 font-medium transition-colors relative group"
                                     >
                                         Login
-                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-cyan-300 group-hover:w-full transition-all duration-300" />
+                                        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-emerald-400 to-cyan-400 group-hover:w-full transition-all duration-300" />
                                     </Link>
                                     <Link to="/features" className="btn-primary">
                                         Get Started
@@ -67,7 +62,7 @@ const Navbar = ({ user }) => {
                                             "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all shadow-sm border",
                                             isDemoMode
                                                 ? "bg-red-500/20 text-red-400 border-red-500/30 hover:bg-red-500/30"
-                                                : "bg-cyan-500/20 text-cyan-400 border-cyan-500/30 hover:bg-cyan-500/30"
+                                                : "bg-teal-50 text-teal-700 border-teal-200 hover:bg-teal-100"
                                         )}
                                     >
                                         <AnimatePresence mode="wait">
@@ -100,22 +95,22 @@ const Navbar = ({ user }) => {
                                         </AnimatePresence>
                                     </motion.button>
 
-                                    <div className="h-6 w-px bg-gradient-to-b from-transparent via-slate-600 to-transparent" />
+                                    <div className="h-6 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent" />
 
                                     {/* User greeting */}
                                     <motion.span
                                         initial={{ opacity: 0, x: 10 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        className="text-slate-300 font-medium font-display"
+                                        className="text-slate-700 font-medium font-display"
                                     >
-                                        Hi, <span className="text-cyan-400">{user.username}</span>
+                                        Hi, <span className="text-teal-700">{user.username}</span>
                                     </motion.span>
 
                                     <motion.button
                                         whileHover={{ scale: 1.05, color: '#ef4444' }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={handleLogout}
-                                        className="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors"
+                                        className="flex items-center gap-2 text-slate-600 hover:text-red-500 transition-colors"
                                     >
                                         <LogOut size={18} />
                                         <span className="text-sm font-medium">Logout</span>
@@ -134,7 +129,7 @@ const Navbar = ({ user }) => {
                                 onClick={toggleDemoMode}
                                 className={cn(
                                     "flex items-center justify-center p-2 rounded-full transition-all",
-                                    isDemoMode ? "bg-red-500/20 text-red-400" : "bg-cyan-500/20 text-cyan-400"
+                                    isDemoMode ? "bg-red-500/20 text-red-400" : "bg-teal-50 text-teal-700"
                                 )}
                             >
                                 {isDemoMode ? (
@@ -149,9 +144,9 @@ const Navbar = ({ user }) => {
                         )}
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="inline-flex items-center justify-center p-2 rounded-xl text-slate-300 hover:text-cyan-400 transition-colors"
+                            className="inline-flex items-center justify-center p-2 rounded-xl text-slate-700 hover:text-teal-700 transition-colors border border-slate-200"
                             style={{
-                                background: 'rgba(15,23,42,0.8)',
+                                background: 'rgba(255,255,255,0.78)',
                             }}
                         >
                             <AnimatePresence mode="wait">
@@ -192,8 +187,8 @@ const Navbar = ({ user }) => {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                         className="md:hidden overflow-hidden"
                         style={{
-                            background: 'rgba(2,6,23,0.98)',
-                            borderTop: '1px solid rgba(51,65,85,0.5)',
+                            background: 'rgba(255,255,255,0.96)',
+                            borderTop: '1px solid rgba(125,211,252,0.35)',
                         }}
                     >
                         <div className="px-4 pt-2 pb-4 space-y-2">
@@ -201,14 +196,14 @@ const Navbar = ({ user }) => {
                                 <>
                                     <Link
                                         to="/login"
-                                        className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-cyan-400 transition-colors"
+                                        className="block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-teal-700 transition-colors"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Login
                                     </Link>
                                     <Link
                                         to="/register"
-                                        className="block px-4 py-3 rounded-xl text-base font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                                        className="block px-4 py-3 rounded-xl text-base font-medium text-teal-700 hover:text-emerald-700 transition-colors"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Register
@@ -218,7 +213,7 @@ const Navbar = ({ user }) => {
                                 <>
                                     <Link
                                         to="/dashboard"
-                                        className="block px-4 py-3 rounded-xl text-base font-medium text-slate-300 hover:text-cyan-400 transition-colors"
+                                        className="block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-teal-700 transition-colors"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         Dashboard

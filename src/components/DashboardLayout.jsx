@@ -66,29 +66,19 @@ const DashboardLayout = ({ children, user }) => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row relative" style={{ background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 40%, #e0f2fe 100%)' }}>
+        <div className="min-h-screen flex flex-col md:flex-row relative aqua-natural-bg overflow-hidden">
             {/* Subtle animated gradient overlay */}
-            <div className="absolute inset-0" style={{
-                background: 'linear-gradient(-45deg, #f0f9ff, #e0f2fe, #bae6fd, #e0f2fe, #f0f9ff)',
-                backgroundSize: '400% 400%',
-                animation: 'gradient-shift 12s ease infinite',
-                opacity: 0.5,
-            }} />
+            <div className="absolute inset-0 aqua-field-bg opacity-90" />
 
             {/* Grid overlay */}
-            <div className="absolute inset-0 opacity-[0.04]" style={{
+            <div className="absolute inset-0 opacity-[0.035]" style={{
                 backgroundImage: 'linear-gradient(rgba(6, 182, 212, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(6, 182, 212, 0.5) 1px, transparent 1px)',
                 backgroundSize: '40px 40px',
             }} />
 
             {/* Soft glow effects */}
-            <div className="absolute top-[10%] left-[20%] w-[500px] h-[500px] rounded-full pointer-events-none" style={{
-                background: 'radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)',
-                filter: 'blur(80px)',
-            }} />
-            <div className="absolute bottom-[20%] right-[20%] w-[400px] h-[400px] rounded-full pointer-events-none" style={{
-                background: 'radial-gradient(circle, rgba(125,211,252,0.08) 0%, transparent 70%)',
-                filter: 'blur(80px)',
+            <div className="absolute inset-x-0 bottom-0 h-36 pointer-events-none" style={{
+                background: 'linear-gradient(0deg, rgba(20,184,166,0.12), transparent)',
             }} />
 
             <Navbar user={user} />
@@ -99,7 +89,7 @@ const DashboardLayout = ({ children, user }) => {
             />
             {/* Main content wrapper with margin left based on sidebar state */}
             <main
-                className={`flex-1 pt-20 p-6 overflow-y-auto w-full transition-all duration-500 ease-out relative z-10 ${
+                className={`flex-1 pt-20 p-4 sm:p-6 overflow-y-auto w-full transition-all duration-500 ease-out relative z-10 ${
                     isSidebarCollapsed ? 'md:ml-[80px]' : 'md:ml-64'
                 }`}
             >

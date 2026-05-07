@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = 'md' }) => {
+const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = 'md', isDark = true }) => {
     // Determine colors
     let fluidColor = '#06b6d4';
     let gradientStart = '#3b82f6';
@@ -50,12 +50,12 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
 
     // Bubbles configuration
     const bubbles = useMemo(() => {
-        return Array.from({ length: 6 }, (_, i) => ({
+        return Array.from({ length: 14 }, (_, i) => ({
             id: i,
-            x: 15 + (i * 14),
-            size: 3 + Math.random() * 4,
-            delay: i * 0.8,
-            duration: 2.5 + Math.random() * 1.5,
+            x: 5 + (i * 6.5),
+            size: 3 + Math.random() * 6,
+            delay: i * 0.3,
+            duration: 1.8 + Math.random() * 1.5,
         }));
     }, []);
 
@@ -77,7 +77,7 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className={`relative ${width} ${height} ${padding} rounded-t-[2rem] rounded-b-[2.5rem] overflow-hidden z-10`}
                 style={{
-                    background: 'linear-gradient(180deg, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.95) 100%)',
+                    background: isDark ? 'linear-gradient(180deg, rgba(15,23,42,0.8) 0%, rgba(15,23,42,0.95) 100%)' : 'linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(240,249,255,0.95) 100%)',
                     boxShadow: `
                         0 0 0 1px ${fluidColor}20,
                         0 25px 50px -12px ${alertGlow},
@@ -89,7 +89,7 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                 <div
                     className="absolute inset-0 z-30 pointer-events-none"
                     style={{
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, transparent 100%)',
+                        background: isDark ? 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%, transparent 100%)' : 'linear-gradient(135deg, rgba(255,255,255,0.5) 0%, transparent 50%, transparent 100%)',
                     }}
                 />
 
@@ -148,7 +148,7 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                                 d: wavePaths,
                             }}
                             transition={{
-                                duration: 4,
+                                duration: 2.5,
                                 repeat: Infinity,
                                 ease: 'easeInOut',
                             }}
@@ -165,10 +165,10 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                                 d: wavePaths.reverse(),
                             }}
                             transition={{
-                                duration: 3.5,
+                                duration: 2.2,
                                 repeat: Infinity,
                                 ease: 'easeInOut',
-                                delay: 0.5,
+                                delay: 0.2,
                             }}
                         />
                     </svg>
@@ -202,7 +202,7 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                 ))}
 
                 {/* Percentage Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center z-25 pointer-events-none">
+                <div className="absolute inset-0 flex items-center justify-center z-40 pointer-events-none">
                     <motion.div
                         key={level}
                         initial={{ scale: 0.5, opacity: 0, filter: 'blur(10px)' }}
@@ -220,10 +220,10 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                         }}
                         className="text-center"
                     >
-                        <p className={`${text} font-display font-bold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)] tracking-tight`}>
+                        <p className={`${text} font-display font-bold ${isDark ? 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]' : 'text-slate-800 drop-shadow-[0_2px_10px_rgba(255,255,255,0.8)]'} tracking-tight`}>
                             {Math.round(level)}
                         </p>
-                        <p className="text-xs text-white/60 font-medium -mt-1">%</p>
+                        <p className={`text-xs ${isDark ? 'text-white/60' : 'text-slate-500'} font-medium -mt-1`}>%</p>
                     </motion.div>
                 </div>
 
@@ -250,7 +250,7 @@ const AnimatedTank = ({ level = 50, status = 'Normal', showInfo = true, size = '
                         boxShadow: `0 0 20px ${secondaryGlow}`,
                     }}
                 >
-                    <p className="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">Status</p>
+                    <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-500'} uppercase tracking-widest font-semibold mb-1`}>Status</p>
                     <div className={`text-lg font-bold ${statusText} flex items-center gap-2 justify-center`}>
                         <motion.div
                             animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}

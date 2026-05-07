@@ -75,13 +75,13 @@ const roleFeatureConfig = {
 
 const roleWidgetConfig = {
     Admin: [
-        { title: 'Total Consumption', value: '128k L', icon: Droplets, color: 'text-blue-600' },
+        { title: 'Total Consumption', value: '128k L', icon: Droplets, color: 'text-teal-700' },
         { title: 'Open Alerts', value: '7', icon: AlertTriangle, color: 'text-red-500' },
-        { title: 'Apartments', value: '96', icon: BarChart3, color: 'text-purple-600' },
+        { title: 'Apartments', value: '96', icon: BarChart3, color: 'text-cyan-700' },
         { title: 'Revenue (Est.)', value: 'Rs 2.4L', icon: TrendingUp, color: 'text-green-600' }
     ],
     User: [
-        { title: 'Your Usage', value: '2.1k L', icon: Droplets, color: 'text-blue-600' },
+        { title: 'Your Usage', value: '2.1k L', icon: Droplets, color: 'text-teal-700' },
         { title: 'Usage Trend', value: '+6%', icon: TrendingUp, color: 'text-teal-500' },
         { title: 'Leak Alerts', value: '1', icon: BellRing, color: 'text-red-500' },
         { title: 'Estimated Bill', value: 'Rs 780', icon: FileText, color: 'text-green-600' }
@@ -90,10 +90,10 @@ const roleWidgetConfig = {
         { title: 'Assigned Issues', value: '5', icon: Wrench, color: 'text-amber-600' },
         { title: 'Resolved Today', value: '3', icon: Shield, color: 'text-green-600' },
         { title: 'Faulty Meters', value: '2', icon: Gauge, color: 'text-red-500' },
-        { title: 'Pending Logs', value: '4', icon: FileText, color: 'text-blue-600' }
+        { title: 'Pending Logs', value: '4', icon: FileText, color: 'text-teal-700' }
     ],
     System: [
-        { title: 'Jobs Completed', value: '24', icon: Cpu, color: 'text-indigo-600' },
+        { title: 'Jobs Completed', value: '24', icon: Cpu, color: 'text-teal-700' },
         { title: 'Detected Anomalies', value: '3', icon: AlertTriangle, color: 'text-red-500' },
         { title: 'Reports Generated', value: '12', icon: FileText, color: 'text-teal-600' },
         { title: 'Health Status', value: 'Stable', icon: Activity, color: 'text-green-600' }
@@ -606,12 +606,12 @@ const handleUpdateSetting = async (key, value) => {
 
     return (
         <DashboardLayout user={user}>
-            <div className="max-w-7xl mx-auto space-y-8 bg-grid rounded-3xl p-6">
+            <div className="max-w-7xl mx-auto space-y-8 aqua-panel rounded-2xl p-4 sm:p-6">
                     {/* Header */}
                     <div className="flex justify-between items-end mb-2">
                         <div className="text-left">
                             <div className="flex items-center gap-3 mb-1">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-600 to-cyan-500 flex items-center justify-center text-white font-bold shadow-glow-cyan-sm">
+                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-700 via-cyan-600 to-emerald-500 flex items-center justify-center text-white font-bold shadow-glow-cyan-sm">
                                     {user?.username?.charAt(0).toUpperCase() || 'U'}
                                 </div>
                                 <div>
@@ -644,7 +644,7 @@ const handleUpdateSetting = async (key, value) => {
 
                             {/* Charts & Alerts Row */}
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                                <div className="lg:col-span-2 bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                                <div className="lg:col-span-2 aqua-panel aqua-panel-hover p-6 rounded-2xl">
                                     <h3 className="font-bold text-slate-800 mb-2 text-lg">Weekly Usage Trends</h3>
                                     <p className="text-xs text-slate-400 mb-6">Real-time consumption data across all zones</p>
                                     <LineChart data={lineChartData} />
@@ -652,13 +652,13 @@ const handleUpdateSetting = async (key, value) => {
                                 <div className="space-y-6">
                                     <AlertPanel alerts={alertPanelData} />
                                     {isAdmin ? (
-                                        <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                                        <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                                             <h3 className="font-bold text-slate-800 mb-2 text-lg">Top Consumers</h3>
                                             <p className="text-xs text-slate-400 mb-4">Highest usage apartments today</p>
                                             <PieChartWidget data={pieChartData} />
                                         </div>
                                     ) : (
-                                        <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                                        <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                                             <h3 className="font-bold text-slate-800 mb-4 text-lg">System Risk</h3>
                                             <RiskMeter riskLevel="Low" />
                                         </div>
@@ -673,13 +673,13 @@ const handleUpdateSetting = async (key, value) => {
                     {activeRole === 'Admin' && adminTab === 'overview' && (
                         <div className="space-y-6">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                                <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                                     <h3 className="font-bold text-slate-800 mb-2 text-lg">Dashboard Overview</h3>
                                     <p className="text-xs text-slate-400 mb-4">Real-time metrics snapshot</p>
                                     <p className="text-sm text-slate-600">Total complex usage: <span className="font-bold text-slate-800">{Math.round(totalComplexUsage).toLocaleString()} L</span></p>
                                     <p className="text-sm text-slate-600 mt-2">Usage trend points: <span className="font-bold text-slate-800">{roleData.usage.length}</span></p>
                                 </div>
-                                <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                                <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                                     <h3 className="font-bold text-slate-800 mb-2 text-lg">Complex Snapshot</h3>
                                     <p className="text-xs text-slate-400 mb-4">Current infrastructure status</p>
                                     <p className="text-sm text-slate-600">Apartments: <span className="font-bold text-slate-800">{roleData.apartments.length}</span></p>
@@ -698,12 +698,12 @@ const handleUpdateSetting = async (key, value) => {
                     )}
 
                     {activeRole === 'Admin' && adminTab === 'users' && (
-                        <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                        <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                             <div className="flex items-center justify-between mb-4">
                                 <h3 className="font-bold text-gray-800 text-lg">User Management</h3>
                                 <button
                                     onClick={() => setShowUserModal(true)}
-                                    className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors"
+                                    className="px-4 py-2 rounded-xl aqua-cta font-semibold transition-colors"
                                 >
                                     Create User
                                 </button>
@@ -744,7 +744,7 @@ const handleUpdateSetting = async (key, value) => {
                                                     <div className="flex items-center gap-3">
                                                         <button
                                                             onClick={() => handleUpdateUserDetails(u)}
-                                                            className="text-blue-600 hover:text-blue-700 font-medium"
+                                                            className="text-teal-700 hover:text-emerald-700 font-medium"
                                                             disabled={editingUserId === u._id}
                                                         >
                                                             {editingUserId === u._id ? 'Updating...' : 'Update'}
@@ -761,14 +761,14 @@ const handleUpdateSetting = async (key, value) => {
                     )}
 
                     {activeRole === 'Admin' && adminTab === 'apartments' && (
-                        <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl">
+                        <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl">
                             <div className="flex flex-col md:flex-row items-center justify-between mb-6 gap-4">
                                 <h3 className="font-bold text-gray-800 text-lg w-full md:w-auto">Apartment Management</h3>
                                 <div className="flex items-center gap-3 w-full md:w-auto">
                                     <input type="text" placeholder="Search apartments..." className="px-4 py-2 bg-white/50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 w-full md:w-64" />
                                     <button
                                         onClick={() => setShowApartmentModal(true)}
-                                        className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap shadow-md hover:shadow-lg"
+                                        className="px-4 py-2 rounded-xl aqua-cta font-semibold transition-colors whitespace-nowrap shadow-md hover:shadow-lg"
                                     >
                                         Create Apartment
                                     </button>
@@ -807,7 +807,7 @@ const handleUpdateSetting = async (key, value) => {
                                     <option value="Inactive">Inactive</option>
                                     <option value="Maintenance">Maintenance</option>
                                 </select>
-                                <button type="submit" className="px-4 py-2 rounded-xl bg-blue-600 text-white">Add</button>
+                                <button type="submit" className="px-4 py-2 rounded-xl aqua-cta">Add</button>
                             </form>
                             <div className="overflow-x-auto rounded-xl border border-slate-200">
                                 <table className="min-w-full text-sm">
@@ -830,7 +830,7 @@ const handleUpdateSetting = async (key, value) => {
                             <h3 className="font-bold text-gray-800 mb-4 text-lg">Billing Control</h3>
                             <div className="flex gap-3 mb-4">
                                 <input type="number" min="0" step="0.01" value={billingRate} onChange={(e) => setBillingRate(Number(e.target.value))} className="px-3 py-2 rounded-xl border border-gray-200 w-44" />
-                                <button type="button" onClick={handleGenerateBills} className="px-4 py-2 rounded-xl bg-blue-600 text-white">Generate Bills</button>
+                                <button type="button" onClick={handleGenerateBills} className="px-4 py-2 rounded-xl aqua-cta">Generate Bills</button>
                             </div>
                             <table className="min-w-full text-sm">
                                 <thead><tr className="text-left border-b"><th className="py-2">Apartment</th><th className="py-2">Resident</th><th className="py-2">Usage</th><th className="py-2">Estimated Cost</th></tr></thead>
@@ -920,7 +920,7 @@ const handleUpdateSetting = async (key, value) => {
                                         <tr key={s._id} className="border-b">
                                             <td className="py-2">{s.key}</td>
                                             <td className="py-2">{typeof s.value === 'object' ? JSON.stringify(s.value) : String(s.value)}</td>
-                                            <td className="py-2"><button onClick={() => setEditSettingModal({ show: true, settingKey: s.key, value: typeof s.value === 'object' ? JSON.stringify(s.value) : String(s.value) })} className="text-blue-600">Edit</button></td>
+                                            <td className="py-2"><button onClick={() => setEditSettingModal({ show: true, settingKey: s.key, value: typeof s.value === 'object' ? JSON.stringify(s.value) : String(s.value) })} className="text-teal-700">Edit</button></td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -1002,7 +1002,7 @@ const handleUpdateSetting = async (key, value) => {
                     )}
 
                     {activeRole === 'User' && adminTab === 'billing' && (
-                        <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl max-w-2xl mx-auto">
+                        <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl max-w-2xl mx-auto">
                             <div className="flex items-center justify-between mb-6">
                                 <h3 className="font-bold text-slate-800 text-lg">Current Bill & History</h3>
                                 <button onClick={() => triggerAction('Generating receipt PDF...')} className="px-4 py-2 border border-white/50 bg-white/50 backdrop-blur-sm rounded-xl text-slate-700 hover:bg-white/80 font-medium transition-all text-sm shadow-sm">Download Receipt</button>
@@ -1052,7 +1052,7 @@ const handleUpdateSetting = async (key, value) => {
                                     <input type="text" readOnly defaultValue="A-402" className="w-full px-4 py-2 bg-slate-100 border border-slate-200 rounded-xl text-slate-500 cursor-not-allowed" />
                                 </div>
                                 <div className="pt-4 flex gap-3">
-                                    <button onClick={() => triggerAction('Profile settings saved successfully.')} className="px-6 py-2 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700">Save Changes</button>
+                                    <button onClick={() => triggerAction('Profile settings saved successfully.')} className="px-6 py-2 aqua-cta rounded-xl font-medium hover:bg-blue-700">Save Changes</button>
                                     <button onClick={() => triggerAction('Password reset link sent to your email.')} className="px-6 py-2 bg-slate-100 text-slate-700 rounded-xl font-medium hover:bg-slate-200">Change Password</button>
                                 </div>
                             </div>
@@ -1061,13 +1061,13 @@ const handleUpdateSetting = async (key, value) => {
 
                     {activeRole === 'Maintenance Staff' && adminTab === 'overview' && (
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                            <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl border-l-4 border-l-amber-400 relative overflow-hidden">
+                            <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl border-l-4 border-l-amber-400 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-amber-50/50 to-transparent" />
                                 <h3 className="font-bold text-slate-800 mb-2 text-lg relative z-10">Pending Issues</h3>
                                 <p className="text-3xl font-bold text-slate-800 mb-2 relative z-10">5 <span className="text-sm font-normal text-slate-500">Tasks assigned</span></p>
                                 <p className="text-sm text-slate-600 relative z-10">2 HIGH Priority Leaks</p>
                             </div>
-                            <div className="bg-white/70 backdrop-blur-md border border-white/50 shadow-lg p-6 rounded-2xl border-l-4 border-l-green-400 relative overflow-hidden">
+                            <div className="aqua-panel aqua-panel-hover p-6 rounded-2xl border-l-4 border-l-green-400 relative overflow-hidden">
                                 <div className="absolute inset-0 bg-gradient-to-r from-green-50/50 to-transparent" />
                                 <h3 className="font-bold text-slate-800 mb-2 text-lg relative z-10">Quick Stats</h3>
                                 <p className="text-3xl font-bold text-slate-800 mb-2 relative z-10">3 <span className="text-sm font-normal text-slate-500">Resolved Today</span></p>
@@ -1218,7 +1218,7 @@ const handleUpdateSetting = async (key, value) => {
                         <div>
                             <div className="flex justify-between items-center mb-6">
                                 <h3 className="text-xl font-bold text-gray-800">Zone Status</h3>
-                                <button className="text-blue-600 font-medium hover:text-blue-700 text-sm transition-colors">View All Zones</button>
+                                <button className="text-teal-700 font-medium hover:text-blue-700 text-sm transition-colors">View All Zones</button>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {zones.map(zone => (
@@ -1249,7 +1249,7 @@ const handleUpdateSetting = async (key, value) => {
                                     </div>
                                     <div className="flex justify-end gap-3 pt-2">
                                         <button type="button" onClick={() => setEditUserModal({ show: false, user: null, email: '', dateOfBirth: '' })} className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700">Cancel</button>
-                                        <button type="submit" disabled={editingUserId} className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">{editingUserId ? 'Saving...' : 'Save Changes'}</button>
+                                        <button type="submit" disabled={editingUserId} className="px-4 py-2 rounded-xl aqua-cta font-semibold">{editingUserId ? 'Saving...' : 'Save Changes'}</button>
                                     </div>
                                 </form>
                             </div>
@@ -1271,7 +1271,7 @@ const handleUpdateSetting = async (key, value) => {
                                     </div>
                                     <div className="flex justify-end gap-3 pt-2">
                                         <button type="button" onClick={() => setEditSettingModal({ show: false, settingKey: '', value: '' })} className="px-4 py-2 rounded-xl border border-gray-300 text-gray-700">Cancel</button>
-                                        <button type="submit" className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700">Save</button>
+                                        <button type="submit" className="px-4 py-2 rounded-xl aqua-cta font-semibold">Save</button>
                                     </div>
                                 </form>
                             </div>
@@ -1320,7 +1320,7 @@ const handleUpdateSetting = async (key, value) => {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                                        className="px-4 py-2 rounded-xl aqua-cta font-semibold"
                                     >
                                         Submit
                                     </button>
@@ -1371,7 +1371,7 @@ const handleUpdateSetting = async (key, value) => {
                                         </button>
                                         <button
                                             type="submit"
-                                            className="px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700"
+                                            className="px-4 py-2 rounded-xl aqua-cta font-semibold"
                                         >
                                             Submit
                                         </button>
@@ -1386,3 +1386,4 @@ const handleUpdateSetting = async (key, value) => {
 };
 
 export default Dashboard;
+
