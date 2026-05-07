@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import { cn } from '../lib/utils';
 import {
     LayoutDashboard, Building2, Gauge, Users, Activity,
     AlertTriangle, FileText, BarChart3, Settings,
@@ -46,10 +48,22 @@ const roleNavConfig = {
 
 const DashboardLayout = ({ children, user }) => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const location = useLocation();
 
     // Default to User if role is not mapped
     const activeRole = user?.role || 'User';
     const sidebarItems = roleNavConfig[activeRole] || roleNavConfig.User;
+    const currentTab = new URLSearchParams(location.search).get('tab');
+    const effectiveCurrentTab = location.pathname === '/dashboard' ? currentTab || 'overview' : currentTab;
+
+    const isItemActive = (path) => {
+        const [pathname, query = ''] = path.split('?');
+        const targetTab = new URLSearchParams(query).get('tab');
+
+        if (pathname !== location.pathname) return false;
+        if (!targetTab) return !effectiveCurrentTab;
+        return effectiveCurrentTab === targetTab;
+    };
 
     // Adjust for mobile automatic collapse
     useEffect(() => {
@@ -87,9 +101,31 @@ const DashboardLayout = ({ children, user }) => {
                 isCollapsed={isSidebarCollapsed}
                 setIsCollapsed={setIsSidebarCollapsed}
             />
+            <div className="fixed left-0 right-0 top-16 z-40 border-b border-cyan-100/70 bg-white/85 px-3 py-2 backdrop-blur-xl md:hidden">
+                <div className="flex gap-2 overflow-x-auto no-scrollbar">
+                    {sidebarItems.map((item) => {
+                        const active = isItemActive(item.path);
+                        return (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                className={cn(
+                                    'inline-flex shrink-0 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-all',
+                                    active
+                                        ? 'border-teal-200 bg-teal-50 text-teal-800 shadow-sm'
+                                        : 'border-slate-200 bg-white/70 text-slate-600 hover:border-cyan-200 hover:text-teal-700'
+                                )}
+                            >
+                                <item.icon size={15} />
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </div>
+            </div>
             {/* Main content wrapper with margin left based on sidebar state */}
             <main
-                className={`flex-1 pt-20 p-4 sm:p-6 overflow-y-auto w-full transition-all duration-500 ease-out relative z-10 ${
+                className={`flex-1 pt-36 md:pt-20 p-4 sm:p-6 overflow-y-auto w-full transition-all duration-500 ease-out relative z-10 ${
                     isSidebarCollapsed ? 'md:ml-[80px]' : 'md:ml-64'
                 }`}
             >

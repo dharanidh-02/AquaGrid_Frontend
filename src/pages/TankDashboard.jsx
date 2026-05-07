@@ -8,6 +8,14 @@ import { motion } from 'framer-motion';
 
 const TankDashboard = () => {
     const [history, setHistory] = useState([]);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            setUser(JSON.parse(userData));
+        }
+    }, []);
 
     useEffect(() => {
         const fetchHistory = async () => {
@@ -33,13 +41,17 @@ const TankDashboard = () => {
     }, []);
 
     return (
-        <DashboardLayout user={{ role: 'Admin' /* default bypass for view */ }}>
-            <div className="max-w-7xl mx-auto space-y-8">
+        <DashboardLayout user={user || { role: 'Admin' }}>
+            <div className="max-w-7xl mx-auto space-y-8 aqua-panel rounded-2xl p-4 sm:p-6">
                 {/* Header */}
-                <div className="flex justify-between items-end">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                     <div className="text-left">
                         <h1 className="text-3xl font-bold text-slate-800">Tank Management</h1>
                         <p className="text-slate-600 mt-1">Real-time deep level analytics and prediction systems.</p>
+                    </div>
+                    <div className="inline-flex w-fit items-center gap-2 rounded-lg border border-teal-100 bg-teal-50/80 px-3 py-2 text-xs font-semibold text-teal-700">
+                        <Wifi size={14} />
+                        Live IoT Feed
                     </div>
                 </div>
 
@@ -50,14 +62,7 @@ const TankDashboard = () => {
                     </div>
 
                     {/* Chart spanning right side */}
-                    <div className="lg:col-span-2 rounded-2xl p-6 border"
-                        style={{
-                            background: 'rgba(241, 245, 249, 0.92)',
-                            backdropFilter: 'blur(20px)',
-                            borderColor: 'rgba(148,163,184,0.4)',
-                            boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
-                        }}
-                    >
+                    <div className="lg:col-span-2 aqua-panel aqua-panel-hover rounded-2xl p-6">
                         <div className="flex justify-between items-center mb-6">
                             <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
                                 <Activity className="text-cyan-600" />
@@ -100,9 +105,9 @@ const TankDashboard = () => {
                         transition={{ duration: 0.2 }}
                         className="p-6 rounded-2xl border"
                         style={{
-                            background: 'rgba(241, 245, 249, 0.92)',
+                            background: 'rgba(255,255,255,0.82)',
                             backdropFilter: 'blur(20px)',
-                            borderColor: 'rgba(148,163,184,0.4)',
+                            borderColor: 'rgba(255,255,255,0.75)',
                             boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                         }}
                     >
@@ -120,9 +125,9 @@ const TankDashboard = () => {
                         transition={{ duration: 0.2 }}
                         className="p-6 rounded-2xl border"
                         style={{
-                            background: 'rgba(241, 245, 249, 0.92)',
+                            background: 'rgba(255,255,255,0.82)',
                             backdropFilter: 'blur(20px)',
-                            borderColor: 'rgba(148,163,184,0.4)',
+                            borderColor: 'rgba(255,255,255,0.75)',
                             boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                         }}
                     >
@@ -140,9 +145,9 @@ const TankDashboard = () => {
                         transition={{ duration: 0.2 }}
                         className="p-6 rounded-2xl border"
                         style={{
-                            background: 'rgba(241, 245, 249, 0.92)',
+                            background: 'rgba(255,255,255,0.82)',
                             backdropFilter: 'blur(20px)',
-                            borderColor: 'rgba(148,163,184,0.4)',
+                            borderColor: 'rgba(255,255,255,0.75)',
                             boxShadow: '0 10px 40px rgba(0,0,0,0.06)',
                         }}
                     >

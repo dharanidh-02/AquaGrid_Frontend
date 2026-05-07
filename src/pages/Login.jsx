@@ -38,7 +38,7 @@ const Login = () => {
 
             if (response.ok) {
                 localStorage.setItem('user', JSON.stringify(data));
-                navigate('/dashboard');
+                navigate('/dashboard?tab=overview');
             } else {
                 alert(data.message || 'Invalid credentials');
             }

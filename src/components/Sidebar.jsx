@@ -5,6 +5,17 @@ import { cn } from '../lib/utils';
 
 const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
     const location = useLocation();
+    const currentTab = new URLSearchParams(location.search).get('tab');
+    const effectiveCurrentTab = location.pathname === '/dashboard' ? currentTab || 'overview' : currentTab;
+
+    const isItemActive = (path) => {
+        const [pathname, query = ''] = path.split('?');
+        const targetTab = new URLSearchParams(query).get('tab');
+
+        if (pathname !== location.pathname) return false;
+        if (!targetTab) return !effectiveCurrentTab;
+        return effectiveCurrentTab === targetTab;
+    };
 
     return (
         <motion.aside
@@ -107,9 +118,7 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
             {/* Navigation Items */}
             <div className="flex-1 px-3 py-4 overflow-y-auto overflow-x-hidden no-scrollbar space-y-1">
                 {items.map((item, index) => {
-                    const currentTab = new URLSearchParams(location.search).get('tab');
-                    const targetTab = new URLSearchParams(item.path.split('?')[1] || '').get('tab');
-                    const isActive = currentTab === targetTab;
+                    const isActive = isItemActive(item.path);
 
                     return (
                         <motion.div

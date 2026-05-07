@@ -212,7 +212,7 @@ const Navbar = ({ user }) => {
                             ) : (
                                 <>
                                     <Link
-                                        to="/dashboard"
+                                        to="/dashboard?tab=overview"
                                         className="block px-4 py-3 rounded-xl text-base font-medium text-slate-700 hover:text-teal-700 transition-colors"
                                         onClick={() => setIsOpen(false)}
                                     >
