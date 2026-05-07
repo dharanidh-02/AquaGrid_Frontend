@@ -119,6 +119,7 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
             <div className="flex-1 px-3 py-4 overflow-y-auto overflow-x-hidden no-scrollbar space-y-1">
                 {items.map((item, index) => {
                     const isActive = isItemActive(item.path);
+                    const disablePressEffect = item.label === 'Usage Analytics' || item.label === 'Tanks Monitor';
 
                     return (
                         <motion.div
@@ -131,7 +132,8 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
                                 to={item.path}
                                 title={isCollapsed ? item.label : ""}
                                 className={cn(
-                                    "flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 group relative",
+                                    "flex items-center gap-3 px-3 py-3 rounded-xl group relative",
+                                    disablePressEffect ? "transition-none" : "transition-all duration-300",
                                     isActive
                                         ? "text-teal-900"
                                         : "text-slate-600 hover:text-teal-700"
@@ -145,16 +147,12 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
                                 {/* Active indicator - Animated water wave line */}
                                 {isActive && (
                                     <>
-                                        <motion.div
-                                            layoutId="activeIndicator"
+                                        <div
                                             className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-10 rounded-r-full"
                                             style={{
                                                 background: 'linear-gradient(180deg, #10b981 0%, #06b6d4 55%, #0f766e 100%)',
                                                 boxShadow: '0 0 15px rgba(13,148,136,0.38)',
                                             }}
-                                            initial={{ scaleY: 0, opacity: 0 }}
-                                            animate={{ scaleY: 1, opacity: 1 }}
-                                            transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                                         />
                                         {/* Glow effect behind icon */}
                                         <div
@@ -169,7 +167,8 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
 
                                 {/* Icon with glow on active */}
                                 <div className={cn(
-                                    "relative flex-shrink-0 transition-all duration-300",
+                                    "relative flex-shrink-0",
+                                    disablePressEffect ? "transition-none" : "transition-all duration-300",
                                     isActive ? "text-teal-700" : "text-slate-500 group-hover:text-teal-600"
                                 )}>
                                     <item.icon size={20} strokeWidth={isActive ? 2 : 1.5} />
@@ -185,7 +184,7 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
                                             initial={{ opacity: 0, width: 0 }}
                                             animate={{ opacity: 1, width: 'auto' }}
                                             exit={{ opacity: 0, width: 0 }}
-                                            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                            transition={{ duration: disablePressEffect ? 0 : 0.25, ease: [0.16, 1, 0.3, 1] }}
                                             className={cn(
                                                 "text-sm font-semibold whitespace-nowrap overflow-hidden",
                                                 isActive ? "text-slate-900" : "text-slate-600 group-hover:text-teal-800"
@@ -199,7 +198,10 @@ const Sidebar = ({ items = [], isCollapsed, setIsCollapsed }) => {
                                 {/* Hover glow */}
                                 {!isActive && (
                                     <div
-                                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        className={cn(
+                                            "absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100",
+                                            disablePressEffect ? "transition-none" : "transition-opacity duration-300"
+                                        )}
                                         style={{
                                             background: 'linear-gradient(90deg, rgba(20,184,166,0.08), rgba(14,165,233,0.05))',
                                         }}

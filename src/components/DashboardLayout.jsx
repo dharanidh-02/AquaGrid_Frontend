@@ -105,12 +105,14 @@ const DashboardLayout = ({ children, user }) => {
                 <div className="flex gap-2 overflow-x-auto no-scrollbar">
                     {sidebarItems.map((item) => {
                         const active = isItemActive(item.path);
+                        const disablePressEffect = item.label === 'Usage Analytics' || item.label === 'Tanks Monitor';
                         return (
                             <Link
                                 key={item.path}
                                 to={item.path}
                                 className={cn(
-                                    'inline-flex shrink-0 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold transition-all',
+                                    'inline-flex shrink-0 items-center gap-2 rounded-lg border px-3 py-2 text-xs font-semibold',
+                                    disablePressEffect ? 'transition-none' : 'transition-all',
                                     active
                                         ? 'border-teal-200 bg-teal-50 text-teal-800 shadow-sm'
                                         : 'border-slate-200 bg-white/70 text-slate-600 hover:border-cyan-200 hover:text-teal-700'
